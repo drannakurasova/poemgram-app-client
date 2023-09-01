@@ -13,6 +13,7 @@ function AuthWrapper(props) {
   }, []);
 
   const verifyToken = async () => {
+    setIsPageLoading(true)
     try {
       const response = await service.get("/auth/verify");
       console.log(response);
@@ -29,6 +30,7 @@ function AuthWrapper(props) {
   };
 
   const passedContext = { verifyToken, isUserActive, activeUserId };
+  // console.log("active user id in auth context", activeUserId);
 
   if (isPageLoading === true) {
     return <p>loading...</p>;

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import service from "../services/service.config";
 
 import { useState, useContext } from "react";
@@ -68,6 +68,10 @@ function LogIn() {
         <br />
 
         <button type="submit">Login</button>
+        <br />
+        <p>No accout yet?</p>
+        <Link to="/signup">Sign up here</Link>
+
 
         {errorMessage ? <p>{errorMessage}</p> : null}
       </form>
