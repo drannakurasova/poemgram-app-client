@@ -3,6 +3,7 @@ import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 
 
+
 function Navbar() {
   const { isUserActive, verifyToken, activeUserId } = useContext(AuthContext);
   console.log("active user id", activeUserId);
@@ -26,13 +27,13 @@ function Navbar() {
             <>
               <NavLink to="/poemgram" className="navbar-brand">
            
-                <img
-                  src={"./assets/logo.png"}
+                {/* <img
+                  src={"../assets/logo.png"}
                   alt="Logo"
                   width="30"
                   height="24"
                   className="d-inline-block align-text-top"
-                />
+                /> */}
                 Poemgram
               </NavLink>
 

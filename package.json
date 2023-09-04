@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "antd": "^5.8.5",
     "axios": "^1.5.0",
     "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.1",
