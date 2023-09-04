@@ -35,7 +35,7 @@ function AllPoets() {
           return (
             <ul key={eachPoet._id} >
                 <Link to={`/poet/${eachPoet._id}/details`}> 
-              <img src={eachPoet.image} alt="" />
+              <img src={eachPoet.image} alt="" width="200px"/>
               <p>
                 {eachPoet.firstName} {eachPoet.lastName}
               </p>

@@ -51,7 +51,7 @@ function PoetDetails() {
         {poetDetails.firstName} <span></span> {poetDetails.lastName} 
       </h2>
 
-      <img src={poetDetails.image} alt="image" width="200px" />
+      <img src={poetDetails.image} alt="image" width="250px" />
       <p>Born in {poetDetails.bornIn}</p>
 
       <Link to={`/poet/${poetDetails._id}/edit-details`}>Edit {poetDetails.firstName} {poetDetails.lastName}´s info</Link>

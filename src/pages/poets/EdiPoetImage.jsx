@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import service from "../../services/service.config";
 import { uploadImageService } from "../../services/upload.services";
-import defaultImage from "../../assets/default_image.jpg";
 
-function EditImage() {
+
+function EditPoetImage() {
   const params = useParams();
   const navigate = useNavigate();
 
@@ -28,14 +28,15 @@ function EditImage() {
   };
  
     useEffect(() => {
-      getUserData();
+      getPoetData();
     }, []);
 
-    const getUserData = async () => {
+    const getPoetData = async () => {
       try {
-        const response = await service.get(`/user/${params.userId}/profile`);
+        const response = await service.get(`/poet/${params.poetId}/details`);
 
-        setImageUrl(response.data.image);
+        setImageUrl(response.data[0].image);
+        console.log(response.data);
 
         if (response === null) {
           return <h3>...just a moment...</h3>;
@@ -48,11 +49,12 @@ function EditImage() {
  const handleEditImage = async (e) => {
     e.preventDefault();
     try {
-      await service.patch(`/user/${params.userId}/profile`, {
+      await service.patch(`/poet/${params.poetId}/details`, {
         image: imageUrl
       });
-      navigate(`/user/${params.userId}/profile`);
+      navigate(`/poet/${params.poetId}/details`);
       window.alert("Image successfully updated");
+  
     } catch (error) {
       console.log(error);
 
@@ -68,7 +70,7 @@ function EditImage() {
   return (
     <div>
        
-      <h2>EditImage</h2>
+      <h2>Edit Image</h2>
  <form onSubmit={handleEditImage}>
       <label htmlFor="image">Your current photo: </label>
       <input
@@ -83,10 +85,10 @@ function EditImage() {
           <img src={imageUrl}  alt="img" width={200} />
         </div>
       ) : null}
-      <button type="submit">Update my photo</button>
+      <button type="submit">Update this photo</button>
       </form>
     </div>
   );
 }
 
-export default EditImage;
+export default EditPoetImage;

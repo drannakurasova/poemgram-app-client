@@ -6,7 +6,7 @@ import service from "../../services/service.config";
 
 
 function NewPoet() {
-const navigate = useNavigate
+const navigate = useNavigate()
 
 const [firstName, setFirstName] = useState("");
 const [lastName, setLastName] = useState("");
@@ -36,7 +36,7 @@ const handleFileUpload = async (e) => {
 
     setImageUrl(response.data.imageUrl);           
     setIsUploading(false); 
-    navigate("/error");
+    // navigate("/error");
   } catch (error) {
     console.log(error);
   }

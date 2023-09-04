@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import service from "../../services/service.config";
-import { uploadImageService } from "../../services/upload.services";
 import defaultImage from "../../assets/default_image.jpg";
 
 function EditProfile() {
@@ -12,7 +11,6 @@ function EditProfile() {
   const [lastName, setLastName] = useState("");
 
   const [imageUrl, setImageUrl] = useState("");
-  const [isUploading, setIsUploading] = useState(false);
 
   const [email, setEmail] = useState("");
 
@@ -21,21 +19,6 @@ function EditProfile() {
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
 
-  // const handleFileUpload = async (e) => {
-  //   setIsUploading(true);
-
-  //   const uploadData = new FormData();
-  //   uploadData.append("image", e.target.files[0]);
-
-  //   try {
-  //     const response = await uploadImageService(uploadData);
-  //     setImageUrl(response.data.imageUrl);
-  //     setIsUploading(false);
-  //     navigate("/error");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   // const handlePhotoChange = (e) => setPhoto(URL.createObjectURL(e.target.files[0]));
 
@@ -66,7 +49,6 @@ function EditProfile() {
       await service.put(`/user/${params.userId}/profile`, {
         firstName,
         lastName,
-        // image,
       });
       navigate(`/user/${params.userId}/profile`);
       window.alert("Successfully updated");
@@ -75,11 +57,16 @@ function EditProfile() {
 
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
-      } else {
-        navigate("/error");
       }
+      //  else {
+      //   navigate("/error");
+      // }
     }
   };
+
+  const navigateToEditImage = () => {
+    navigate (`/user/${params.userId}/profile/edit-image`)
+  }
 
   return (
     <div>
@@ -100,20 +87,9 @@ function EditProfile() {
           value={lastName}
           onChange={handleLastNameChange}
         />
-        <br />
-        <label htmlFor="">Photo: </label>
-        {/* <input
-          type="file"
-          name="image"
-          onChange={handleFileUpload}
-          disabled={isUploading}
-        /> */}
-        {isUploading ? <h3>... uploading image</h3> : null}
-        {imageUrl ? (
-          <div>
-            <img src={imageUrl} onError={defaultImage} alt="img" width={200} />
-          </div>
-        ) : null}
+
+    
+
 
         <br />
         <label htmlFor="">E-mail: </label>
@@ -122,7 +98,11 @@ function EditProfile() {
 
         <button type="submit">Update my info</button>
 
-        {errorMessage ? <p>{errorMessage}</p> : null}
+        {errorMessage ? <p>{errorMessage}</p> : null} 
+         <label htmlFor="">Photo: </label>
+      <br />
+         <img src={imageUrl} onError={defaultImage} alt="img" width={200} />
+         <button onClick= {navigateToEditImage}>Edit my photo</button>
       </form>
     </div>
   );
