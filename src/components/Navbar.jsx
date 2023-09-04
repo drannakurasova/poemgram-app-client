@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
-
+import logo from "../assets/logoP.png"
 
 
 function Navbar() {
@@ -27,15 +27,19 @@ function Navbar() {
             <>
               <NavLink to="/poemgram" className="navbar-brand">
            
-                {/* <img
-                  src={"../assets/logo.png"}
+                <img
+                  src={logo}
                   alt="Logo"
-                  width="30"
+                  width="20"
                   height="24"
                   className="d-inline-block align-text-top"
-                /> */}
+                />
                 Poemgram
               </NavLink>
+
+              <NavLink to="/poet/new-poet"className="nav-link">Add a new poet</NavLink>
+              <NavLink to="/poet/all-poets"className="nav-link">Poets</NavLink>
+
 
               <NavLink
                 to={`/user/${activeUserId}/profile`}

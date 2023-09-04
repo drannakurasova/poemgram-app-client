@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { uploadImageService } from "../services/upload.services";
+import defaultImage from "../assets/default_image.jpg"
 
 function SignUp() {
   const navigate = useNavigate();
@@ -21,22 +22,20 @@ function SignUp() {
   const handleLastNameChange = (e) => setLastName(e.target.value);
 
   const handleFileUpload = async (e) => {
-    if (!e.target.files[0]) {
-      // to prevent accidentally clicking the choose file button and not selecting a file
-      return;
-    }
+    // if (!e.target.files[0]) {
+    //   // to prevent accidentally clicking the choose file button and not selecting a file
+    //   return;
+    // }
 
     setIsUploading(true); // to start the loading animation
 
-    const uploadData = new FormData(); // images and other files need to be sent to the backend in a FormData
+    const uploadData = new FormData(); 
     uploadData.append("image", e.target.files[0]);
     //                   |
     //     this name needs to match the name used in the middleware => uploader.single("image")
 
     try {
       const response = await uploadImageService(uploadData);
-      // or below line if not using services
-      // const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/upload`, uploadData)
 
       setImageUrl(response.data.imageUrl);
       //                          |
@@ -64,15 +63,20 @@ function SignUp() {
         password,
       });
 
+    // if (!imageUrl) {
+    // imageUrl = defaultImage
+    // }
+
       navigate("/login");
     } catch (error) {
       console.log(error);
 
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
-      } else {
-        navigate("/error");
-      }
+      } 
+    //   else {
+    //     navigate("/error");
+    //   }
     }
   };
 
@@ -107,7 +111,7 @@ function SignUp() {
         {isUploading ? <h3>... uploading image</h3> : null}
         {imageUrl ? (
           <div>
-            <img src={imageUrl} alt="img" width={200} />
+            <img src={imageUrl} onError={defaultImage} alt="img" width={200} />
           </div>
         ) : null}
 

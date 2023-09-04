@@ -9,6 +9,8 @@ import Error from './pages/Error'
 import LogIn from './pages/LogIn'
 import Profile from './pages/user/Profile'
 import EditProfile from './pages/user/EditProfile'
+import NewPoet from './pages/poets/NewPoet'
+import AllPoets from './pages/poets/AllPoets'
 
 function App() {
 
@@ -26,6 +28,11 @@ function App() {
  {/* //!USER */}
 <Route path="/user/:userId/profile" element={ <Profile /> }/>
 <Route path="/user/:userId/edit-profile" element={<EditProfile/>}/>
+
+
+ {/* //!POET */}
+ <Route path="/poet/new-poet" element={ <NewPoet/> }/>
+ <Route path="/poet/all-poets" element={ <AllPoets/> }/>
 
 {/* //!errors */}
 <Route path="/error" element={ <Error /> }/>

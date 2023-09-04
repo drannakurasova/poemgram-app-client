@@ -46,7 +46,7 @@ function Profile() {
       <h2>Hello, {userDetails.firstName} </h2>
       <p>Your full name is {userDetails.firstName} {userDetails.lastName} </p>
       <p>Your photo is:</p>
-      <img src={userDetails.photo} alt="photo" width="200px" />
+      <img src={userDetails.image} alt="image" width="200px" />
       <p>Your email is {userDetails.email}</p>
      
       <Link to={`/user/${params.userId}/edit-profile`}>Edit your info</Link>
