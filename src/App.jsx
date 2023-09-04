@@ -11,6 +11,9 @@ import Profile from './pages/user/Profile'
 import EditProfile from './pages/user/EditProfile'
 import NewPoet from './pages/poets/NewPoet'
 import AllPoets from './pages/poets/AllPoets'
+import PoetDetails from './pages/poets/PoetDetails'
+import EditPoet from './pages/poets/EditPoet'
+import EditImage from './pages/user/EditImage'
 
 function App() {
 
@@ -28,11 +31,15 @@ function App() {
  {/* //!USER */}
 <Route path="/user/:userId/profile" element={ <Profile /> }/>
 <Route path="/user/:userId/edit-profile" element={<EditProfile/>}/>
+<Route path="/user/:userId/profile/edit-image" element={<EditImage/>}/>
+
 
 
  {/* //!POET */}
  <Route path="/poet/new-poet" element={ <NewPoet/> }/>
  <Route path="/poet/all-poets" element={ <AllPoets/> }/>
+ <Route path="/poet/:poetId/details" element={ <PoetDetails/> }/>
+ <Route path="/poet/:poetId/edit-details" element={<EditPoet/>}/>
 
 {/* //!errors */}
 <Route path="/error" element={ <Error /> }/>

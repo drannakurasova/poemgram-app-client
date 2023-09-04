@@ -6,7 +6,7 @@ import logo from "../assets/logoP.png"
 
 function Navbar() {
   const { isUserActive, verifyToken, activeUserId } = useContext(AuthContext);
-  console.log("active user id", activeUserId);
+  // console.log("active user id", activeUserId);
 
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function Navbar() {
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
    
         <div className="navbar-nav">
-          {console.log("is user active", isUserActive)}
+          {/* {console.log("is user active", isUserActive)} */}
           {isUserActive === true ? (
             <>
               <NavLink to="/poemgram" className="navbar-brand">
@@ -39,6 +39,7 @@ function Navbar() {
 
               <NavLink to="/poet/new-poet"className="nav-link">Add a new poet</NavLink>
               <NavLink to="/poet/all-poets"className="nav-link">Poets</NavLink>
+              <NavLink to="/poet/:poetId/details"className="nav-link">{}</NavLink>
 
 
               <NavLink
