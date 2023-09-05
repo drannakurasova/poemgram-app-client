@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 function AllPoets() {
   const navigate = useNavigate();
   const [allPoets, setAllPoets] = useState();
-  console.log(allPoets);
+  // console.log(allPoets);
 
   useEffect(() => {
     getPoets();

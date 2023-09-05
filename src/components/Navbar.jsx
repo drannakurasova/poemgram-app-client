@@ -42,6 +42,7 @@ function Navbar() {
               <NavLink to="/poet/:poetId/details"className="nav-link">{}</NavLink>
 
               <NavLink to="/poem/new-poem"className="nav-link">Add a new poem</NavLink>
+              <NavLink to="/poem/all-poems"className="nav-link">Poems</NavLink>
 
 
               <NavLink

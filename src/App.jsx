@@ -16,6 +16,8 @@ import EditPoet from './pages/poets/EditPoet'
 import EditImage from './pages/user/EditImage'
 import EditPoetImage from './pages/poets/EdiPoetImage'
 import NewPoem from './pages/poems/NewPoem'
+import AllPoems from './pages/poems/AllPoems'
+import PoemDetails from './pages/poems/PoemDetails'
 
 
 function App() {
@@ -46,6 +48,8 @@ function App() {
 
   {/* //!POEM */}
   <Route path="/poem/new-poem" element={ <NewPoem/> }/>
+  <Route path="/poem/all-poems" element={ <AllPoems/> }/>
+  <Route path="/poem/:poemId/details" element={ <PoemDetails/> }/>
 
 {/* //!errors */}
 <Route path="/error" element={ <Error /> }/>
