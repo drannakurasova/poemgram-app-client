@@ -6,30 +6,39 @@ function EditPoem() {
   const params = useParams();
   const navigate = useNavigate();
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [options, setOptions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [bornIn, setBornIn] = useState("");
-
+  const [chosenPoet, setChosenPoet] = useState (null)
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleFirstNameChange = (e) => setFirstName(e.target.value);
-  const handleLastNameChange = (e) => setLastName(e.target.value);
-  // const handlePhotoChange = (e) => setPhoto(URL.createObjectURL(e.target.files[0]));
-  const handleBornInChange = (e) => setBornIn(e.target.value);
-
   useEffect(() => {
-    getPoetData();
+    getOptions();
+    getPoemData()
   }, []);
 
-  const getPoetData = async () => {
+  const getOptions = async (e) => {
+     setIsLoading(true)
     try {
-      const response = await service.get(`/poet/${params.poetId}/details`);
-      setFirstName(response.data[0].firstName);
-      setLastName(response.data[0].lastName);
-      setImageUrl(response.data[0].image);
-      setBornIn(response.data[0].bornIn);
+       
+      const poetResponse = await service.get(`/poem/new-poem`);
+      console.log(poetResponse.data);
+      setOptions(poetResponse.data);
+      setIsLoading(false)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getPoemData = async () => {
+    try {
+      const response = await service.get(`/poem/${params.poemId}/details`);
+      setTitle(response.data[0].title);
+      setText(response.data[0].text);
+      setChosenPoet(response.data[0].poet);
+  
       if (response === null) {
         return <h3>...just a moment...</h3>;
       }
@@ -39,16 +48,21 @@ function EditPoem() {
     }
   };
 
-  const handleEditPoet = async (e) => {
+  const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleTextChange = (e) => setText(e.target.value);
+  const handlePoetChange = (e) => setChosenPoet(e.target.value);
+
+
+  const handleEditPoem = async (e) => {
     e.preventDefault();
 
     try {
-      const updatedPoet = await service.put(`/poet/${params.poetId}/details`, {
-        firstName,
-        lastName,
-        bornIn,
+      const updatedPoem = await service.put(`/poem/${params.poemId}/details`, {
+        title,
+        text,
+        poet:chosenPoet,
       });
-      navigate(`/poet/${params.poetId}/details`);
+      navigate(`/poem/${params.poemId}/details`);
       window.alert(
      "Successfully updated"
       );
@@ -64,46 +78,54 @@ function EditPoem() {
     }
   };
 
-  const navigateToEditImage = () => {
-    navigate(`/poet/${params.poetId}/details/edit-image`);
-  };
 
   return (
     <div>
-      <h2>EDIT INFORMATION</h2>
-      <form onSubmit={handleEditPoet}>
-        <label htmlFor="">First name: </label>
+      <h2>EDIT A POEM</h2>
+      <form onSubmit={handleEditPoem}>
+        <label htmlFor="">Title: </label>
         <input
           type="text"
-          name="firstName"
-          value={firstName}
-          onChange={handleFirstNameChange}
+          name="title"
+          value={title}
+          onChange={handleTitleChange}
         />
         <br />
-        <label htmlFor="">Last name: </label>
+        <label htmlFor="">Text: </label>
         <input
           type="text"
-          name="lastName"
-          value={lastName}
-          onChange={handleLastNameChange}
+          name="text"
+          value={text}
+          onChange={handleTextChange}
         />
         <br />
-        <label htmlFor="bornIn">Born in: </label>
-        <input
-          type="text"
-          name="bornIn"
-          value={bornIn}
-          onChange={handleBornInChange}
-        />
+        <label htmlFor="poet">Written by:</label>
+        <select
+          className="form-select"
+          name="poet"
+          multiple={true}
+        onChange={handlePoetChange}
+          disabled={isLoading}
+        >
+          {options.map((eachPoet) => {
+            return (
+           
+              
+                <option value={eachPoet._id} key={eachPoet._id}  >
+                  {eachPoet.firstName} {eachPoet.lastName}
+                </option>
+             
+            );
+          })}
+        </select>
+
         <br />
 
         <button type="submit">Update information</button>
 
         {errorMessage ? <p>{errorMessage}</p> : null}
-        <label htmlFor="">Photo: </label>
-        <br />
-        <img src={imageUrl} alt="img" width={200} />
-        <button onClick={navigateToEditImage}>Edit this photo</button>
+      
+
       </form>
     </div>
   );
