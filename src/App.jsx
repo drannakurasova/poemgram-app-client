@@ -19,6 +19,7 @@ import NewPoem from './pages/poems/NewPoem'
 import AllPoems from './pages/poems/AllPoems'
 import PoemDetails from './pages/poems/PoemDetails'
 import EditPoem from './pages/poems/EditPoem'
+import IsPrivate from './pages/IsPrivate'
 
 
 function App() {
@@ -35,23 +36,23 @@ function App() {
 <Route path="/login" element={ <LogIn /> }/>
 
  {/* //!USER */}
-<Route path="/user/:userId/profile" element={ <Profile /> }/>
-<Route path="/user/:userId/edit-profile" element={<EditProfile/>}/>
-<Route path="/user/:userId/profile/edit-image" element={<EditImage/>}/>
+<Route path="/user/:userId/profile" element={<IsPrivate><Profile /></IsPrivate>  }/>
+<Route path="/user/:userId/edit-profile" element={<IsPrivate><EditProfile/></IsPrivate>}/>
+<Route path="/user/:userId/profile/edit-image" element={<IsPrivate><EditImage/></IsPrivate>}/>
 
 
  {/* //!POET */}
- <Route path="/poet/new-poet" element={ <NewPoet/> }/>
- <Route path="/poet/all-poets" element={ <AllPoets/> }/>
- <Route path="/poet/:poetId/details" element={ <PoetDetails/> }/>
- <Route path="/poet/:poetId/edit-details" element={<EditPoet/>}/>
- <Route path="/poet/:poetId/details/edit-image" element={<EditPoetImage/>}/>
+ <Route path="/poet/new-poet" element={<IsPrivate><NewPoet/> </IsPrivate> }/>
+ <Route path="/poet/all-poets" element={<IsPrivate><AllPoets/></IsPrivate>  }/>
+ <Route path="/poet/:poetId/details" element={<IsPrivate><PoetDetails/></IsPrivate>  }/>
+ <Route path="/poet/:poetId/edit-details" element={<IsPrivate><EditPoet/></IsPrivate>}/>
+ <Route path="/poet/:poetId/details/edit-image" element={<IsPrivate><EditPoetImage/></IsPrivate>}/>
 
   {/* //!POEM */}
-  <Route path="/poem/new-poem" element={ <NewPoem/> }/>
-  <Route path="/poem/all-poems" element={ <AllPoems/> }/>
-  <Route path="/poem/:poemId/details" element={ <PoemDetails/> }/>
-  <Route path="/poem/:poemId/edit-details" element={<EditPoem/>}/>
+  <Route path="/poem/new-poem" element={<IsPrivate><NewPoem/> </IsPrivate> }/>
+  <Route path="/poem/all-poems" element={ <IsPrivate><AllPoems/></IsPrivate> }/>
+  <Route path="/poem/:poemId/details" element={ <IsPrivate><PoemDetails/></IsPrivate> }/>
+  <Route path="/poem/:poemId/edit-details" element={<IsPrivate><EditPoem/></IsPrivate>}/>
 
 {/* //!errors */}
 <Route path="/error" element={ <Error /> }/>

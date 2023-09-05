@@ -23,6 +23,15 @@ function AllPoems() {
     }
   };
 
+  const handleSortByTitle = () => {
+    console.log("sorting by title");
+    let clonedPoems = JSON.parse(JSON.stringify(allPoems));
+    clonedPoems.sort((poem1, poem2) => {
+      return poem1.title.localeCompare(poem2.title) > 0 ? 1 : -1;
+    });
+    setAllPoems(clonedPoems);
+  };
+
   if (allPoems === undefined) {
     return <h3>...searching</h3>;
   }
@@ -30,6 +39,12 @@ function AllPoems() {
   return (
     <div>
       <h3>All Poems</h3>
+      <section className="sorting">
+      <button onClick={handleSortByTitle} >Sort by title</button>
+      <button type="button">Sort by popularity</button>
+      <button type="button">Sort by ??</button>
+      </section>
+      <br />
       <div>
         {allPoems.map((eachPoem) => {
           return (

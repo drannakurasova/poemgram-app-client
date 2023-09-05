@@ -23,6 +23,15 @@ function AllPoets() {
     }
   };
 
+  const handleSortByName = () => {
+    console.log("sorting by name");
+    let clonedPoets = JSON.parse(JSON.stringify(allPoets));
+    clonedPoets.sort((poet1, poet2) => {
+      return poet1.lastName.localeCompare(poet2.lastName) > 0 ? 1 : -1;
+    });
+    setAllPoets(clonedPoets);
+  };
+
   if (allPoets === undefined) {
     return <h3>...searching</h3>;
   }
@@ -30,7 +39,13 @@ function AllPoets() {
   return (
     <div>
       <h3>All Poets</h3>
-      <div>
+      <section className="sorting">
+      <button onClick={handleSortByName} >Sort by name</button>
+      <button type="button">Sort by popularity</button>
+      <button type="button">Sort by ??</button>
+      </section>
+      <br />
+    <div>
         {allPoets.map((eachPoet) => {
           return (
             <ul key={eachPoet._id} >
