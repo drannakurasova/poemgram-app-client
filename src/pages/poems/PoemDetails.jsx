@@ -4,6 +4,7 @@ import service from "../../services/service.config";
 
 function PoemDetails() {
   const [poemDetails, setPoemDetails] = useState(null);
+  const [addToFavourite, setAddToFavourite] = useState("")
   const params = useParams();
   const navigate = useNavigate();
 
@@ -36,6 +37,21 @@ function PoemDetails() {
     return <h3>...just a moment...</h3>;
   }
 
+  const handleAddToFavouriteChange = async () => {
+    try {
+        const response = await service.patch (`/poem/${params.poemId}/add-to-favourite`)
+        if (response.data.likePoem.includes(params.poemId)){
+          setAddToFavourite(true)
+        }else {
+          setAddToFavourite(false)
+        }
+        console.log(addToFavourite);
+        
+    } catch (error) {
+        console.log(error);
+    }
+   }
+
   return (
     <div>
       <nav>
@@ -46,6 +62,12 @@ function PoemDetails() {
       <h4>{poemDetails.title}</h4>
 
       <p> {poemDetails.text}</p>
+      <br />
+      <button type="button" onClick={handleAddToFavouriteChange}>
+      {addToFavourite === false
+         ? "💜" 
+        :  "♡"} 
+        </button>
 
       <Link to={`/poem/${poemDetails._id}/edit-details`}>Edit this poem</Link>
       <button onClick={handleDeletePoem}>Delete this poem</button>

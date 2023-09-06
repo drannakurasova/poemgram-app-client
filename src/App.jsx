@@ -55,7 +55,7 @@ function App() {
   <Route path="/poem/all-poems" element={ <IsPrivate><AllPoems/></IsPrivate> }/>
   <Route path="/poem/:poemId/details" element={ <IsPrivate><PoemDetails/></IsPrivate> }/>
   <Route path="/poem/:poemId/edit-details" element={<IsPrivate><EditPoem/></IsPrivate>}/>
-
+  <Route path="/poem/:poemId/add-to-favourite" element={<IsPrivate><FavouritePoet/></IsPrivate>}/>
 {/* //!errors */}
 <Route path="/error" element={ <Error /> }/>
 

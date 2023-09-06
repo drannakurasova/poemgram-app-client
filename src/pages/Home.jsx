@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+
 import service from "../services/service.config"
 
 
@@ -7,7 +7,7 @@ function Home() {
   const [currentNews, setCurrentNews] = useState(null)
   const [isNewsLoading, setIsNewsLoading] = useState (true)
 
-  const navigate = useNavigate()
+
 
   useEffect(() => {
     getCurrentNews()
