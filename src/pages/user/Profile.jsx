@@ -48,6 +48,28 @@ function Profile() {
       <p>Your photo is:</p>
       <img src={userDetails.image} alt="image" width="200px" />
       <p>Your email is {userDetails.email}</p>
+
+    
+      <h5>Poems you like:</h5> 
+     { userDetails.likePoem == [] ? "..." : 
+      userDetails.likePoem.map((eachLike) => {
+        return ( 
+           <ul key={eachLike._id}> 
+        <Link to = {`/poem/${eachLike._id}/details`}> <p >{eachLike.title}  </p></Link>
+     </ul> )   
+    })} 
+     <br />
+
+     <h5>Poets you like:</h5> 
+     { userDetails.favouritePoet == [] ? "..." : 
+      userDetails.favouritePoet.map((eachPoet) => {
+        return ( 
+           <ul key={eachPoet._id}> 
+       <Link to = {`/poet/${eachPoet._id}/details`}> <p  >{eachPoet.firstName} {eachPoet.lastName}  </p></Link>
+     </ul> )   
+    })} 
+     <br />
+  
      
       <Link to={`/user/${params.userId}/edit-profile`}>Edit your info</Link>
        <button onClick={handleDeleteUser} >Delete this account</button>

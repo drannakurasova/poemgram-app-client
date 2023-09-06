@@ -74,6 +74,16 @@ function PoetDetails() {
         :  "♡"} 
         </button>
 
+        {/* <h5>Poems by this author:</h5> 
+     { poetDetails.favouritePoet == [] ? "..." : 
+      userDetails.favouritePoet.map((eachPoet) => {
+        return ( 
+           <ul key={eachPoet._id}> 
+       <Link to = {`/poet/${eachPoet._id}/details`}> <p  >{eachPoet.firstName} {eachPoet.lastName}  </p></Link>
+     </ul> )   
+    })} 
+     <br />  */}
+
       <Link to={`/poet/${poetDetails._id}/edit-details`}>Edit {poetDetails.firstName} {poetDetails.lastName}´s info</Link>
       <button onClick={handleDeletePoet} >Delete this poet</button>
 

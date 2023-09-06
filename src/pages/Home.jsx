@@ -17,7 +17,7 @@ function Home() {
     try {
       const response = await service.get("/poemgram")
       console.log(response);
-      setCurrentNews(response.data.slice(0, 3))
+      setCurrentNews(response.data.slice(0, 2))
       setIsNewsLoading(false)
     
     } catch (error) {
@@ -35,6 +35,7 @@ function Home() {
         return (
           <div key={eachNews.article_id} width="80px" >
             <p>{eachNews.title} </p>
+            <p>{eachNews.relatedPoem.title} </p>
 
           </div>
         )

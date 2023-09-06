@@ -117,7 +117,7 @@ const handleAddNewPoet = async (e) => {
    
       <button type="submit">Add this poet</button>
 
-      {errorMessage ? <p>{errorMessage}</p> : null}
+      {errorMessage ? <p> {errorMessage}</p> : null}
     </form>
   </div>
   )
