@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams, Link } from "react-router-dom";
 import service from "../../services/service.config";
 
+
 function PoetDetails() {
   const [poetDetails, setPoetDetails] = useState(null);
+  const [addToFavourite, setAddToFavourite] = useState("")
   const params = useParams();
   const navigate = useNavigate();
 
@@ -12,7 +14,6 @@ function PoetDetails() {
   }, [params.poetId]);
 
   const getPoetDetails = async () => { 
-    
     try {
       const response = await service.get(`/poet/${params.poetId}/details`)
       console.log(response);
@@ -36,7 +37,20 @@ function PoetDetails() {
     if (poetDetails === null) {
     return <h3>...just a moment...</h3>;
   }
-
+  const handleAddToFavouriteChange = async () => {
+    try {
+        const response = await service.patch (`/poet/${params.poetId}/add-to-favourite`)
+        if (response.data.favouritePoet.includes(params.poetId)){
+          setAddToFavourite(true)
+        }else {
+          setAddToFavourite(false)
+        }
+        console.log(addToFavourite);
+        
+    } catch (error) {
+        console.log(error);
+    }
+  };
  
   return (
     <div>
@@ -53,6 +67,12 @@ function PoetDetails() {
 
       <img src={poetDetails.image} alt="image" width="250px" />
       <p>Born in {poetDetails.bornIn}</p>
+      <br />
+      <button type="button" onClick={handleAddToFavouriteChange}>
+      {addToFavourite === false
+         ? "💜" 
+        :  "♡"} 
+        </button>
 
       <Link to={`/poet/${poetDetails._id}/edit-details`}>Edit {poetDetails.firstName} {poetDetails.lastName}´s info</Link>
       <button onClick={handleDeletePoet} >Delete this poet</button>

@@ -20,6 +20,7 @@ import AllPoems from './pages/poems/AllPoems'
 import PoemDetails from './pages/poems/PoemDetails'
 import EditPoem from './pages/poems/EditPoem'
 import IsPrivate from './pages/IsPrivate'
+import FavouritePoet from './pages/poets/FavouritePoet'
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
  <Route path="/poet/:poetId/details" element={<IsPrivate><PoetDetails/></IsPrivate>  }/>
  <Route path="/poet/:poetId/edit-details" element={<IsPrivate><EditPoet/></IsPrivate>}/>
  <Route path="/poet/:poetId/details/edit-image" element={<IsPrivate><EditPoetImage/></IsPrivate>}/>
+ <Route path="/poet/:poetId/add-to-favourite" element={<IsPrivate><FavouritePoet/></IsPrivate>}/>
 
   {/* //!POEM */}
   <Route path="/poem/new-poem" element={<IsPrivate><NewPoem/> </IsPrivate> }/>
