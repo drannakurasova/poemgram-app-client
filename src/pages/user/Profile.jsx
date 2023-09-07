@@ -42,11 +42,13 @@ function Profile() {
     return <h3>...just a moment...</h3>
   }
   return (
-    <div>
-      <h2>Hello, {userDetails.firstName} </h2>
-      <p>Your full name is {userDetails.firstName} {userDetails.lastName} </p>
+    <div className="profile">
+      <h2>Hello, {userDetails.firstName} </h2> 
       <p>Your photo is:</p>
       <img src={userDetails.image} alt="image" width="200px" />
+      <br />
+      <p>Your full name is {userDetails.firstName} {userDetails.lastName} </p>
+     
       <p>Your email is {userDetails.email}</p>
 
     
@@ -71,8 +73,9 @@ function Profile() {
      <br />
   
      
-      <Link to={`/user/${params.userId}/edit-profile`}>Edit your info</Link>
-       <button onClick={handleDeleteUser} >Delete this account</button>
+      <button type="button"className="btn btn-outline-secondary btn-sm"><Link to={`/user/${params.userId}/edit-profile`}>Edit your info</Link></button>
+      <br />
+       <button onClick={handleDeleteUser} className="btn btn-outline-secondary btn-sm">Delete this account</button>
   
 
 

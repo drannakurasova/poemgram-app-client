@@ -81,59 +81,60 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <h2>SIGN UP</h2>
+    <div className="singup">
+      <h4>SIGN UP</h4>
       <form onSubmit={handleSignUp}>
+      <div className="input-group mb-3">
         <label htmlFor="firstName">First name: </label>
         <input
           type="text"
           name="firstName"
           value={firstName}
           onChange={handleFirstNameChange}
-        />
-        <br />
+        /></div>
+        <div className="input-group mb-3">
         <label htmlFor="lastName">Last name: </label>
         <input
           type="text"
           name="lastName"
           value={lastName}
           onChange={handleLastNameChange}
-        />
-        <br />
+        /></div>
+      
 
-        <label htmlFor="image">Photo: </label>
-        <input
-          type="file"
-          name="image"
-          onChange={handleFileUpload}
-          disabled={isUploading}
-        />
-        {isUploading ? <h3>... uploading image</h3> : null}
-        {imageUrl ? (
-          <div>
-            <img src={imageUrl} onError={defaultImage} alt="img" width={200} />
-          </div>
-        ) : null}
 
-        <br />
-
+        <div className="input-group mb-3">
         <label htmlFor="email">E-mail: </label>
         <input
-          type="text"
+          type="e-mail"
           name="email"
           value={email}
           onChange={handleEmailChange}
-        />
-        <br />
+        /></div>
+        <div className="input-group mb-3">
         <label htmlFor="password">Password: </label>
         <input
           type="password"
           name="password"
           value={password}
           onChange={handlePasswordChange}
-        />
+        /></div>
         <br />
-        <button type="submit">Take me in</button>
+         <div className="input-group mb-3">
+        <label htmlFor="image">Photo: </label>
+        <input
+          type="file"
+          name="image"
+          onChange={handleFileUpload}
+          disabled={isUploading}
+        /></div>
+        {isUploading ? <h3>... uploading image</h3> : null}
+        {imageUrl ? (
+          <div>
+            <img src={imageUrl} onError={defaultImage} alt="img" width={200} />
+          </div>
+        ) : null}
+        <button type="submit"className="btn btn-outline-secondary btn-sm">Take me in</button>
 
         {errorMessage ? <p>{errorMessage}</p> : null}
       </form>

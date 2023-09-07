@@ -71,7 +71,7 @@ const handleAddNewPoet = async (e) => {
 };
 
   return (
-    <div>
+    <div className="newPoet">
     <h2>ADD A NEW POET</h2>
     <form onSubmit={handleAddNewPoet}>
       <label htmlFor="firstName">First name: </label>
@@ -115,8 +115,7 @@ const handleAddNewPoet = async (e) => {
         onChange={handleBornInChange}
       />
       <br />
-   
-      <button type="submit">Add this poet</button>
+      <button type="submit"className="btn btn-outline-light btn-sm">Add this poet</button>
 
       {errorMessage ? <p> {errorMessage}</p> : null}
     </form>

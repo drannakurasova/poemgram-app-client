@@ -69,40 +69,40 @@ function EditProfile() {
   }
 
   return (
-    <div>
+    <div className= "editProfile">
       <h2>EDIT YOUR INFO</h2>
       <form onSubmit={handleEditProfile}>
+      <div className="input-group mb-3">
         <label htmlFor="">First name: </label>
         <input
           type="text"
           name="firstName"
           value={firstName}
           onChange={handleFirstNameChange}
-        />
-        <br />
+        /></div>
+       
+        <div className="input-group mb-3">
         <label htmlFor="">Last name: </label>
         <input
           type="text"
           name="lastName"
           value={lastName}
           onChange={handleLastNameChange}
-        />
+        /></div>
 
-    
-
-
-        <br />
+        <div className="input-group mb-3">
         <label htmlFor="">E-mail: </label>
         <input type="text" name="email" value={email} />
-        <br />
-
-        <button type="submit">Update my info</button>
+        </div>
+        <button type="submit"className="btn btn-outline-secondary btn-sm">Update my info</button>
 
         {errorMessage ? <p>{errorMessage}</p> : null} 
+        <br />
          <label htmlFor="">Photo: </label>
       <br />
-         <img src={imageUrl} onError={defaultImage} alt="img" width={200} />
-         <button onClick= {navigateToEditImage}>Edit my photo</button>
+         <img src={imageUrl}  alt="img" width={200} />
+         <br />
+         <button onClick= {navigateToEditImage} className="btn btn-outline-secondary btn-sm">Edit my photo</button>
       </form>
     </div>
   );

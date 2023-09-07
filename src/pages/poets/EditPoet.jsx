@@ -69,43 +69,49 @@ function EditPoet() {
   };
 
   return (
-    <div>
-      <h2>EDIT INFORMATION</h2>
-      <form onSubmit={handleEditPoet}>
+    <div className = "editPoet">
+    
+      <h3>EDIT INFORMATION</h3>
+      <form onSubmit={handleEditPoet}> 
+       <div className="input-group mb-3">
         <label htmlFor="">First name: </label>
         <input
           type="text"
           name="firstName"
           value={firstName}
           onChange={handleFirstNameChange}
-        />
+        /></div>
         <br />
+        <div className="input-group mb-3">
         <label htmlFor="">Last name: </label>
         <input
           type="text"
           name="lastName"
           value={lastName}
           onChange={handleLastNameChange}
-        />
+        /></div>
         <br />
+        <div className="input-group mb-3">
         <label htmlFor="bornIn">Born in: </label>
         <input
           type="text"
           name="bornIn"
           value={bornIn}
           onChange={handleBornInChange}
-        />
+        /></div>
         <br />
 
-        <button type="submit">Update information</button>
+        <button type="submit"className="btn btn-outline-secondary btn-sm">Update information</button>
 
         {errorMessage ? <p>{errorMessage}</p> : null}
         <br />
+        <section className = "imageEdit">
         <label htmlFor="">Image: </label>
-        <br />
+    
         <img src={imageUrl} alt="img" width={200} />
-        <button onClick={navigateToEditImage}>Edit this image</button>
-      </form>
+        <button onClick={navigateToEditImage}className="btn btn-outline-secondary btn-sm">Edit this image</button>
+     </section> 
+     </form>
 
 
     </div>

@@ -80,33 +80,40 @@ function EditPoem() {
 
 
   return (
-    <div>
+    <div className = "editPoem">
       <h2>EDIT A POEM</h2>
       <form onSubmit={handleEditPoem}>
+      <div className="input-group mb-3">
         <label htmlFor="">Title: </label>
         <input
           type="text"
           name="title"
           value={title}
           onChange={handleTitleChange}
-        />
+        /></div>
         <br />
-        <label htmlFor="">Text: </label>
-        <input
+        <div className="input-group">
+        <span className="input-group-text">Text</span>
+       
+        <textarea
           type="text"
           name="text"
+          rows="6"
           value={text}
           onChange={handleTextChange}
-        />
+        ></textarea>
+        </div>
         <br />
+        <div className="input-group mb-3">
         <label htmlFor="poet">Written by:</label>
         <select
-          className="form-select"
+          className="form-select" aria-label="Default select example"
           name="poet"
           multiple={true}
         onChange={handlePoetChange}
           disabled={isLoading}
         >
+
           {options.map((eachPoet) => {
             return (
            
@@ -118,10 +125,11 @@ function EditPoem() {
             );
           })}
         </select>
+        </div>
 
         <br />
 
-        <button type="submit">Update information</button>
+        <button type="submit" className="btn btn-outline-secondary btn-sm">Update information</button>
 
         {errorMessage ? <p>{errorMessage}</p> : null}
       

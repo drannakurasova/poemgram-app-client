@@ -49,12 +49,15 @@ function AllPoets() {
 
   return (
     <div>
-      <h3>All Poets</h3>
+      {/* <h3>All Poets</h3>  */}
+      <div>
       <section className="sorting">
-      <button onClick={handleSortByName} >Sort by name</button>
-      <button onClick={handleSortByWhenBorn} >Sort by the year of birth</button>
+      <button onClick={handleSortByName} className="btn btn-outline-secondary btn-sm" >Sort by name</button>
+     
+      <button onClick={handleSortByWhenBorn} className="btn btn-outline-secondary btn-sm">Sort by the year of birth</button>
     
       </section>
+      </div>
       <br />
     <div>
         {allPoets.map((eachPoet) => {

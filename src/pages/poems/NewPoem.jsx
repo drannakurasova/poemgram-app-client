@@ -65,8 +65,9 @@ function NewPoem() {
     <h3>just a moment</h3>
   }
   return (
-    <div>
-      <h2>Add a new poem</h2>
+    <div className = "newPoem">
+      <h5>Add a new poem</h5>
+      <br />
 
       <form onSubmit={handleAddNewPoem}>
         <label htmlFor="title">Title: </label>
@@ -78,11 +79,11 @@ function NewPoem() {
         />
         <br />
         <div className="input-group">
+          <br />
         <span className="input-group-text">Text</span>
        <textarea className="form-control" aria-label="text" type="text"
           name="text"
-          width="100"
-          height="300"
+          rows="6"
           value={text}
           onChange={handleTextChange}></textarea>
         {/* <label htmlFor="text">Text: </label> */}
@@ -115,7 +116,7 @@ function NewPoem() {
 
         <br />
 
-        <button type="submit">Add this poem</button>
+        <button type="submit"className="btn btn-outline-secondary btn-sm">Add this poem</button>
 
         {errorMessage ? <p>{errorMessage}</p> : null}
       </form>

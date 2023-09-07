@@ -3,7 +3,7 @@ import './App.css'
 
 import { Routes, Route } from 'react-router-dom'
 import SignUp from './pages/SignUp'
-import Navbar from './components/Navbar'
+
 import Home from './pages/Home'
 import Error from './pages/Error'
 import LogIn from './pages/LogIn'
@@ -22,6 +22,7 @@ import EditPoem from './pages/poems/EditPoem'
 import IsPrivate from './pages/IsPrivate'
 import AllNews from './pages/news/AllNews'
 import Spinner from './components/Spinner'
+import Navbar from './components/Navbar'
 
 
 
@@ -30,7 +31,7 @@ function App() {
 
   return (
     <>
-    <Navbar />
+    <Navbar/>
 
 <Routes>
 {/* //!GLOBAL */}

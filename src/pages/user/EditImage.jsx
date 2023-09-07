@@ -67,24 +67,25 @@ function EditImage() {
   };
 
   return (
-    <div>
+    <div className="editProfileImage">
        
       <h2>EditImage</h2>
  <form onSubmit={handleEditImage}>
+ <div className="input-group mb-3">
       <label htmlFor="image">Your current photo: </label>
       <input
         type="file"
         name="image"
         onChange={handleFileUpload}
         disabled={isUploading}
-      />
-      {isUploading ? <h3>... uploading image</h3> : null}
+      /></div>
+      {isUploading ? <Spinner/> : null}
       {imageUrl ? (
         <div>
           <img src={imageUrl}  alt="img" width={200} />
         </div>
       ) : null}
-      <button type="submit">Update my photo</button>
+      <button type="submit"className="btn btn-outline-secondary btn-sm">Update my photo</button>
       </form>
     </div>
   );

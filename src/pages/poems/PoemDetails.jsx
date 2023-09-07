@@ -54,7 +54,7 @@ function PoemDetails() {
    }
 
   return (
-    <div>
+    <div className = "poemDetails">
       <nav>
         <NavLink to="/poem/all-poems" className="nav-link">
           Back to all poems
@@ -64,16 +64,19 @@ function PoemDetails() {
 
       <p> {poemDetails.text}</p>
       <br />
-      <button type="button" onClick={handleAddToFavouriteChange}>
+      <button type="button" onClick={handleAddToFavouriteChange} className="btn btn-outline-secondary btn-sm">
       {addToFavourite === false
          ? "💜" 
         :  "♡"} 
         </button>
+        <br />
 
-      <Link to={`/poem/${poemDetails._id}/edit-details`}>Edit this poem</Link>
-      <button onClick={handleDeletePoem}>Delete this poem</button>
+      <button className="btn btn-outline-secondary btn-sm"><Link to={`/poem/${poemDetails._id}/edit-details`}>Edit this poem</Link></button>
+      <br />
+      <button onClick={handleDeletePoem} className="btn btn-outline-secondary btn-sm">Delete this poem</button>
+      <br />
       <p>
-        Written by:
+        Written by: <br />
         <Link to={`/poet/${poemDetails.poet._id}/details`}>
           {poemDetails.poet.firstName} {poemDetails.poet.lastName}
         </Link>

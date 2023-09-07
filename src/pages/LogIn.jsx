@@ -42,8 +42,8 @@ function LogIn() {
     }
   };
   return (
-    <div>
-      <h2> Please log in </h2>
+    <div className="login">
+      <h4> Please log in </h4>
 
     
       <form onSubmit={handleLogin}>
@@ -67,10 +67,10 @@ function LogIn() {
 
         <br />
 
-        <button type="submit">Login</button>
+        <button type="submit"className="btn btn-outline-light btn-sm">Login</button>
         <br />
         <p>No accout yet?</p>
-        <Link to="/signup">Sign up here</Link>
+        <button type="submit"className="btn btn-outline-light btn-sm"><Link to="/signup">Sign up here</Link></button>
 
 
         {errorMessage ? <p>{errorMessage}</p> : null}

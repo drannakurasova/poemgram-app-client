@@ -67,23 +67,24 @@ function EditPoetImage() {
   };
 
   return (
-    <div>
-      <h2>Edit Image</h2>
+    <div className = "imagePoetEdit">
+      <h4>Edit an image</h4>
       <form onSubmit={handleEditImage}>
-        <label htmlFor="image">Your current photo: </label>
+      <div className="input-group mb-3">
+        <label htmlFor="image">Current image: </label>
         <input
           type="file"
           name="image"
           onChange={handleFileUpload}
           disabled={isUploading}
-        />
+        /> </div>
         {isUploading ? <h3>... uploading image</h3> : null}
         {imageUrl ? (
           <div>
             <img src={imageUrl} alt="img" width={200} />
           </div>
         ) : null}
-        <button type="submit">Update this photo</button>
+        <button type="submit" className="btn btn-outline-secondary btn-sm">Update this photo</button>
       </form>
     </div>
   );
