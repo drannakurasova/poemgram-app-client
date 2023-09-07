@@ -77,15 +77,19 @@ function NewPoem() {
           onChange={handleTitleChange}
         />
         <br />
-        <label htmlFor="text">Text: </label>
-        <input
-          type="text"
+        <div className="input-group">
+        <span className="input-group-text">Text</span>
+       <textarea className="form-control" aria-label="text" type="text"
           name="text"
           width="100"
           height="300"
           value={text}
-          onChange={handleTextChange}
-        />
+          onChange={handleTextChange}></textarea>
+        {/* <label htmlFor="text">Text: </label> */}
+        {/* <input className="form-control" aria-label="text"
+         
+        /> */}
+        </div>
         <br />
         <label htmlFor="poet">Written by:</label>
         <select

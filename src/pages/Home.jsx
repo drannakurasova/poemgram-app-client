@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 
 import service from "../services/service.config"
+import Spinner from "../components/Spinner"
 
 
 function Home() {
@@ -17,16 +18,16 @@ function Home() {
     try {
       const response = await service.get("/poemgram")
       console.log(response);
-      setCurrentNews(response.data.slice(0, 2))
+      setCurrentNews(response.data.slice(0, 5))
       setIsNewsLoading(false)
-    
+      console.log(response.data[4].relatedOwrd);
     } catch (error) {
       console.log(error);
     }
   }
 
   if (currentNews === null) {
-    return <h3>loading</h3>
+    return <Spinner/>
   }
   return (
     <div>

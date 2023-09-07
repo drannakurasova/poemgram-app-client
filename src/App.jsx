@@ -20,6 +20,8 @@ import AllPoems from './pages/poems/AllPoems'
 import PoemDetails from './pages/poems/PoemDetails'
 import EditPoem from './pages/poems/EditPoem'
 import IsPrivate from './pages/IsPrivate'
+import AllNews from './pages/news/AllNews'
+import Spinner from './components/Spinner'
 
 
 
@@ -35,6 +37,9 @@ function App() {
 <Route path="/poemgram" element={ <Home /> }/>
 <Route path="/signup" element={ <SignUp /> }/>
 <Route path="/login" element={ <LogIn /> }/>
+
+{/* //!NEWS */}
+<Route path="/news-in-poems" element={ <AllNews /> }/>
 
  {/* //!USER */}
 <Route path="/user/:userId/profile" element={<IsPrivate><Profile /></IsPrivate>  }/>

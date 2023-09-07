@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import service from "../../services/service.config";
 import { useNavigate, Link } from "react-router-dom";
+import Spinner from "../../components/Spinner";
 
 function AllPoets() {
   const navigate = useNavigate();
@@ -32,8 +33,18 @@ function AllPoets() {
     setAllPoets(clonedPoets);
   };
 
+  const handleSortByWhenBorn = () => {
+    console.log("sorting by whenborn");
+    let clonedPoets = JSON.parse(JSON.stringify(allPoets));
+    clonedPoets.sort((poet1, poet2) => { 
+      return poet1.bornIn > poet2.bornIn ? -1 : 1})
+    setAllPoets(clonedPoets);
+    console.log(clonedPoets[0].bornIn);
+  };
+
   if (allPoets === undefined) {
-    return <h3>...searching</h3>;
+    return <Spinner/>
+  
   }
 
   return (
@@ -41,8 +52,8 @@ function AllPoets() {
       <h3>All Poets</h3>
       <section className="sorting">
       <button onClick={handleSortByName} >Sort by name</button>
-      <button type="button">Sort by popularity</button>
-      <button type="button">Sort by ??</button>
+      <button onClick={handleSortByWhenBorn} >Sort by the year of birth</button>
+    
       </section>
       <br />
     <div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams, Link } from "react-router-dom";
 import service from "../../services/service.config";
+import Spinner from "../../components/Spinner";
 
 function PoemDetails() {
   const [poemDetails, setPoemDetails] = useState(null);
@@ -34,7 +35,7 @@ function PoemDetails() {
     }
   };
   if (poemDetails === null) {
-    return <h3>...just a moment...</h3>;
+    return <Spinner/>
   }
 
   const handleAddToFavouriteChange = async () => {

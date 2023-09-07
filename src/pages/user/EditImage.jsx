@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import service from "../../services/service.config";
 import { uploadImageService } from "../../services/upload.services";
 import defaultImage from "../../assets/default_image.jpg";
+import Spinner from "../../components/Spinner";
 
 function EditImage() {
   const params = useParams();
@@ -38,7 +39,7 @@ function EditImage() {
         setImageUrl(response.data.image);
 
         if (response === null) {
-          return <h3>...just a moment...</h3>;
+          return <Spinner/>
         }
         // console.log(response.data);
       } catch (error) {

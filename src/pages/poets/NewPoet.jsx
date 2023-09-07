@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { uploadImageService } from "../../services/upload.services";
 import { useState } from "react";
 import service from "../../services/service.config";
+import Spinner from "../../components/Spinner";
 
 
 
@@ -53,14 +54,14 @@ const handleAddNewPoet = async (e) => {
       firstName,
       lastName,
       image: imageUrl,
-     bornIn
+      bornIn
     });
 
     navigate("/poet/all-poets");
   } catch (error) {
     console.log(error);
 
-    if (error.response && error.response.status === 400) {
+    if (error.response && (error.response.status === 400 || error.response.status === 401)) {
       setErrorMessage(error.response.data.errorMessage);
     } 
   //   else {
@@ -97,7 +98,7 @@ const handleAddNewPoet = async (e) => {
         onChange={handleFileUpload}
         disabled={isUploading}
       />
-      {isUploading ? <h3>... uploading image</h3> : null}
+      {isUploading ? <Spinner/> : null}
       {imageUrl ? (
         <div>
           <img src={imageUrl} alt="img" width={200} />

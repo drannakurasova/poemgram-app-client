@@ -36,6 +36,7 @@ function Navbar() {
                 />
                 Poemgram
               </NavLink>
+              <NavLink to="/news-in-poems"className="nav-link">News in poems</NavLink>
 
               <NavLink to="/poet/new-poet"className="nav-link">Add a new poet</NavLink>
               <NavLink to="/poet/all-poets"className="nav-link">Poets</NavLink>

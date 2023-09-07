@@ -55,7 +55,7 @@ function EditPoet() {
     } catch (error) {
       console.log(error);
 
-      if (error.response && error.response.status === 400) {
+      if (error.response && (error.response.status === 400|| error.response.status === 401)) {
         setErrorMessage(error.response.data.errorMessage);
       }
       // else {
@@ -100,11 +100,14 @@ function EditPoet() {
         <button type="submit">Update information</button>
 
         {errorMessage ? <p>{errorMessage}</p> : null}
-        <label htmlFor="">Photo: </label>
+        <br />
+        <label htmlFor="">Image: </label>
         <br />
         <img src={imageUrl} alt="img" width={200} />
-        <button onClick={navigateToEditImage}>Edit this photo</button>
+        <button onClick={navigateToEditImage}>Edit this image</button>
       </form>
+
+
     </div>
   );
 }
