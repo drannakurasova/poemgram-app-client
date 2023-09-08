@@ -5,7 +5,7 @@ import Spinner from "../../components/Spinner";
 
 function PoemDetails() {
   const [poemDetails, setPoemDetails] = useState(null);
-  const [addToFavourite, setAddToFavourite] = useState("")
+  const [addToFavourite, setAddToFavourite] = useState("");
   const params = useParams();
   const navigate = useNavigate();
 
@@ -18,7 +18,6 @@ function PoemDetails() {
       const response = await service.get(`/poem/${params.poemId}/details`);
 
       setPoemDetails(response.data[0]);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -35,26 +34,26 @@ function PoemDetails() {
     }
   };
   if (poemDetails === null) {
-    return <Spinner/>
+    return <Spinner />;
   }
 
   const handleAddToFavouriteChange = async () => {
     try {
-        const response = await service.patch (`/poem/${params.poemId}/add-to-favourite`)
-        if (response.data.likePoem.includes(params.poemId)){
-          setAddToFavourite(true)
-        }else {
-          setAddToFavourite(false)
-        }
-        console.log(addToFavourite);
-        
+      const response = await service.patch(
+        `/poem/${params.poemId}/add-to-favourite`
+      );
+      if (response.data.likePoem.includes(params.poemId)) {
+        setAddToFavourite(true);
+      } else {
+        setAddToFavourite(false);
+      }
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-   }
+  };
 
   return (
-    <div className = "poemDetails">
+    <div className="poemDetails">
       <nav>
         <NavLink to="/poem/all-poems" className="nav-link">
           Back to all poems
@@ -64,16 +63,25 @@ function PoemDetails() {
 
       <p> {poemDetails.text}</p>
       <br />
-      <button type="button" onClick={handleAddToFavouriteChange} className="btn btn-outline-secondary btn-sm">
-      {addToFavourite === false
-         ? "💜" 
-        :  "♡"} 
-        </button>
-        <br />
-
-      <button className="btn btn-outline-secondary btn-sm"><Link to={`/poem/${poemDetails._id}/edit-details`}>Edit this poem</Link></button>
+      <button
+        type="button"
+        onClick={handleAddToFavouriteChange}
+        className="btn btn-outline-secondary btn-sm"
+      >
+        {addToFavourite === false ? "💜" : "♡"}
+      </button>
       <br />
-      <button onClick={handleDeletePoem} className="btn btn-outline-secondary btn-sm">Delete this poem</button>
+
+      <button className="btn btn-outline-secondary btn-sm">
+        <Link to={`/poem/${poemDetails._id}/edit-details`}>Edit this poem</Link>
+      </button>
+      <br />
+      <button
+        onClick={handleDeletePoem}
+        className="btn btn-outline-secondary btn-sm"
+      >
+        Delete this poem
+      </button>
       <br />
       <p>
         Written by: <br />

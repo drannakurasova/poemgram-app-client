@@ -15,7 +15,6 @@ function AllPoems() {
     try {
       const response = await service.get("/poem/all-poems");
 
-      console.log("response", response);
       setAllPoems(response.data.allPoems);
     } catch (error) {
       console.log(error);
@@ -24,7 +23,6 @@ function AllPoems() {
   };
 
   const handleSortByTitle = () => {
-    console.log("sorting by title");
     let clonedPoems = JSON.parse(JSON.stringify(allPoems));
     clonedPoems.sort((poem1, poem2) => {
       return poem1.title.localeCompare(poem2.title) > 0 ? 1 : -1;
@@ -39,7 +37,6 @@ function AllPoems() {
       return poem1.createdAt > poem2.createdAt ? -1 : 1;
     });
     setAllPoems(clonedPoems);
-    console.log(clonedPoems[0].createdAt);
   };
 
   if (allPoems === undefined) {
@@ -51,27 +48,34 @@ function AllPoems() {
       <h3>All Poems</h3>
       <br />
       <section className="sorting">
-        <button onClick={handleSortByTitle} className="btn btn-outline-secondary btn-sm"> Sort by title</button>
-        {/* <button type="button">Sort by popularity</button> */}
-        <button onClick={handleSortByWhenAdded} className="btn btn-outline-secondary btn-sm">Show most recent first</button>
+        <button
+          onClick={handleSortByTitle}
+          className="btn btn-outline-secondary btn-sm"
+        >
+          Sort by title
+        </button>
+  
+        <button
+          onClick={handleSortByWhenAdded}
+          className="btn btn-outline-secondary btn-sm"
+        >
+          Show most recent first
+        </button>
       </section>
       <br />
       <div className="allPoems">
         <ul className="list-group">
-        {allPoems.map((eachPoem) => {
-          return (
-           
+          {allPoems.map((eachPoem) => {
+            return (
               <li key={eachPoem._id} className="list-group-item">
-        
                 <Link to={`/poem/${eachPoem._id}/details`}>
                   {eachPoem.title} by <span></span>
                   {eachPoem.poet.firstName} {eachPoem.poet.lastName}
                 </Link>
               </li>
-           
-          );
-        })}
-         </ul>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

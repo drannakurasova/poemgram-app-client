@@ -2,11 +2,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 import logo from "../assets/logoP.png";
-import userLogo from "../assets/user.png"
+import userLogo from "../assets/user.png";
 
 function Navbar() {
   const { isUserActive, verifyToken, activeUserId } = useContext(AuthContext);
-  // console.log("active user id", activeUserId);
 
   const navigate = useNavigate();
 
@@ -32,7 +31,6 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            {/* {console.log("is user active", isUserActive)} */}
             {isUserActive === true ? (
               <>
                 <NavLink to="/poemgram" className="navbar-brand">
@@ -81,19 +79,18 @@ function Navbar() {
                   >
                     Poems
                   </a>
-                  <ul className="dropdown-menu">      
-                  <li>
-                <NavLink to="/poem/all-poems" className="dropdown-item">
-                  All Poems
-                </NavLink></li>
+                  <ul className="dropdown-menu">
                     <li>
-
-                <NavLink to="/poem/new-poem" className="dropdown-item">
-                  Add a new poem
-                </NavLink>
-                </li>
-              
-                </ul>
+                      <NavLink to="/poem/all-poems" className="dropdown-item">
+                        All Poems
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/poem/new-poem" className="dropdown-item">
+                        Add a new poem
+                      </NavLink>
+                    </li>
+                  </ul>
                 </li>
 
                 <li className="nav-item dropdown">
@@ -102,27 +99,29 @@ function Navbar() {
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
-                  >  <img src={userLogo} alt="" width="30px" />
-                     </a>
-                     <ul className="dropdown-menu">      
-                  <li>
-                <NavLink
-                  to={`/user/${activeUserId}/profile`}
-                  className="dropdown-item"
-                >
-                  Your Profile
-                </NavLink></li>
+                  >
+                    {" "}
+                    <img src={userLogo} alt="" width="30px" />
+                  </a>
+                  <ul className="dropdown-menu">
                     <li>
-                <button
-                  onClick={handleLogout}
-                  className="btn btn-outline-secondary btn-sm"
-                >
-                  Log out
-                </button>
+                      <NavLink
+                        to={`/user/${activeUserId}/profile`}
+                        className="dropdown-item"
+                      >
+                        Your Profile
+                      </NavLink>
+                    </li>
+                    <li>
+                      <button
+                        onClick={handleLogout}
+                        className="btn btn-outline-secondary btn-sm"
+                      >
+                        Log out
+                      </button>
+                    </li>
+                  </ul>
                 </li>
-              
-              </ul>
-              </li>
               </>
             ) : (
               <NavLink to="/login" className="nav-link">

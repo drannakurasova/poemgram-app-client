@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import service from "../services/service.config";
 import { uploadImageService } from "../services/upload.services";
 import defaultImage from "../assets/default_image.jpg"
+import Spinner from "../components/Spinner";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -22,10 +23,7 @@ function SignUp() {
   const handleLastNameChange = (e) => setLastName(e.target.value);
 
   const handleFileUpload = async (e) => {
-    // if (!e.target.files[0]) {
-    //   // to prevent accidentally clicking the choose file button and not selecting a file
-    //   return;
-    // }
+ 
 
     setIsUploading(true); // to start the loading animation
 
@@ -46,13 +44,13 @@ function SignUp() {
       navigate("/error");
     }
   };
-  // const handleBornInChange = (e) => setBornIn(e.target.value)
+
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    console.log(imageUrl);
+
 
     try {
       await service.post("/auth/signup", {
@@ -62,10 +60,6 @@ function SignUp() {
         email,
         password,
       });
-
-    // if (!imageUrl) {
-    // imageUrl = defaultImage
-    // }
 
       navigate("/login");
     } catch (error) {
@@ -128,7 +122,7 @@ function SignUp() {
           onChange={handleFileUpload}
           disabled={isUploading}
         /></div>
-        {isUploading ? <h3>... uploading image</h3> : null}
+        {isUploading ? <Spinner/> : null}
         {imageUrl ? (
           <div>
             <img src={imageUrl} onError={defaultImage} alt="img" width={200} />

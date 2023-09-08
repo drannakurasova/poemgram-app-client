@@ -71,8 +71,8 @@ function AllNews() {
               </button>
             </p>
           
-            <div class="collapse" id="collapseText">
-              <div class="card card-body">
+            <div className="collapse" id="collapseText">
+              <div className="card card-body">
                 <p>{eachNews.relatedPoem.text}</p></div>
             </div>
    

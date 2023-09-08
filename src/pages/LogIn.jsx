@@ -1,4 +1,4 @@
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import service from "../services/service.config";
 
 import { useState, useContext } from "react";
@@ -29,7 +29,6 @@ function LogIn() {
 
       await verifyToken();
 
-      console.log("login response", response);
       navigate("/poemgram");
     } catch (error) {
       console.log(error);
@@ -45,7 +44,6 @@ function LogIn() {
     <div className="login">
       <h4> Please log in </h4>
 
-    
       <form onSubmit={handleLogin}>
         <label>E-mail:</label>
         <input
@@ -67,11 +65,14 @@ function LogIn() {
 
         <br />
 
-        <button type="submit"className="btn btn-outline-light btn-sm">Login</button>
+        <button type="submit" className="btn btn-outline-light btn-sm">
+          Login
+        </button>
         <br />
         <p>No accout yet?</p>
-        <button type="submit"className="btn btn-outline-light btn-sm"><Link to="/signup">Sign up here</Link></button>
-
+        <button type="submit" className="btn btn-outline-light btn-sm">
+          <Link to="/signup">Sign up here</Link>
+        </button>
 
         {errorMessage ? <p>{errorMessage}</p> : null}
       </form>

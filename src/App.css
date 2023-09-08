@@ -6,21 +6,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-background-color: rgb(51, 19, 77);
-color: beige;
+  background-color: rgb(51, 19, 77);
+  color: beige;
+  max-width: 100%;
 }
 
-.news-cards {
-
- display: flex;
- flex-wrap: wrap;
-align-content: center;
-width: 70%
-}
+ .news-cards { 
+   display: flex;
+  flex-wrap: wrap; 
+   align-content: center;
+ justify-content: space-around;
+ flex-direction: column;
+  width: 70%;
+  padding: 10px;
+} 
 
 .card {
   width: 30%;
   border-radius: 20%;
+
 }
 
 .card-body {
@@ -33,9 +37,9 @@ width: 70%
 }
 
 .container-fluid {
-  color: white ;
+  color: white;
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
 
   align-items: center;
   justify-content: center;
@@ -46,47 +50,55 @@ width: 70%
   flex-direction: column;
 
   width: 70%;
-  text-align:justify;
+  text-align: justify;
 }
 
-img{
+img {
   border-radius: 20%;
   height: 100 px;
-  
 }
 
 div {
   display: flex;
-  flex-direction: row ;
+  flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  
 }
 
 .sorting {
-padding: 10px;
+  padding: 10px;
 }
 
-.poetDetails, .editPoet, .imagePoetEdit, .genAllPoems, .poemDetails, .editPoem, .profile, .editProfile, .newPoem, .newPoet, .login, .singup, .editProfileImage {
+.poetDetails,
+.editPoet,
+.imagePoetEdit,
+.genAllPoems,
+.poemDetails,
+.editPoem,
+.profile,
+.editProfile,
+.newPoem,
+.newPoet,
+.login,
+.singup,
+.editProfileImage{
   padding: 10px;
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  
 }
 
 .allPoems {
   display: flex;
   justify-content: center;
-
 }
 
 .imageEdit {
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -96,14 +108,13 @@ padding: 10px;
 }
 
 .navbar {
- background-color: rgb(214, 182, 222);
-
+  background-color: rgb(214, 182, 222);
 }
 
 #all-news {
   background-color: aliceblue;
- border-radius: 0%;
- color: rgb(78, 29, 123);
+  border-radius: 0%;
+  color: rgb(78, 29, 123);
 }
 
 #all-poems {
@@ -123,5 +134,5 @@ input {
 } */
 
 .poemDetails {
-  width: 50%
+  width: 50%;
 }

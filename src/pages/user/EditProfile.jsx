@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import service from "../../services/service.config";
 import defaultImage from "../../assets/default_image.jpg";
+import Spinner from "../../components/Spinner";
 
 function EditProfile() {
   const params = useParams();
@@ -19,9 +20,6 @@ function EditProfile() {
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
 
-
-  // const handlePhotoChange = (e) => setPhoto(URL.createObjectURL(e.target.files[0]));
-
   useEffect(() => {
     getUserData();
   }, []);
@@ -34,9 +32,8 @@ function EditProfile() {
       setImageUrl(response.data.image);
       setEmail(response.data.email);
       if (response === null) {
-        return <h3>...just a moment...</h3>;
+        return <Spinner />;
       }
-      // console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -65,44 +62,53 @@ function EditProfile() {
   };
 
   const navigateToEditImage = () => {
-    navigate (`/user/${params.userId}/profile/edit-image`)
-  }
+    navigate(`/user/${params.userId}/profile/edit-image`);
+  };
 
   return (
-    <div className= "editProfile">
+    <div className="editProfile">
       <h2>EDIT YOUR INFO</h2>
       <form onSubmit={handleEditProfile}>
-      <div className="input-group mb-3">
-        <label htmlFor="">First name: </label>
-        <input
-          type="text"
-          name="firstName"
-          value={firstName}
-          onChange={handleFirstNameChange}
-        /></div>
-       
         <div className="input-group mb-3">
-        <label htmlFor="">Last name: </label>
-        <input
-          type="text"
-          name="lastName"
-          value={lastName}
-          onChange={handleLastNameChange}
-        /></div>
-
-        <div className="input-group mb-3">
-        <label htmlFor="">E-mail: </label>
-        <input type="text" name="email" value={email} />
+          <label htmlFor="">First name: </label>
+          <input
+            type="text"
+            name="firstName"
+            value={firstName}
+            onChange={handleFirstNameChange}
+          />
         </div>
-        <button type="submit"className="btn btn-outline-secondary btn-sm">Update my info</button>
 
-        {errorMessage ? <p>{errorMessage}</p> : null} 
+        <div className="input-group mb-3">
+          <label htmlFor="">Last name: </label>
+          <input
+            type="text"
+            name="lastName"
+            value={lastName}
+            onChange={handleLastNameChange}
+          />
+        </div>
+
+        <div className="input-group mb-3">
+          <label htmlFor="">E-mail: </label>
+          <input type="text" name="email" value={email} />
+        </div>
+        <button type="submit" className="btn btn-outline-secondary btn-sm">
+          Update my info
+        </button>
+
+        {errorMessage ? <p>{errorMessage}</p> : null}
         <br />
-         <label htmlFor="">Photo: </label>
-      <br />
-         <img src={imageUrl}  alt="img" width={200} />
-         <br />
-         <button onClick= {navigateToEditImage} className="btn btn-outline-secondary btn-sm">Edit my photo</button>
+        <label htmlFor="">Photo: </label>
+        <br />
+        <img src={imageUrl} alt="img" width={200} />
+        <br />
+        <button
+          onClick={navigateToEditImage}
+          className="btn btn-outline-secondary btn-sm"
+        >
+          Edit my photo
+        </button>
       </form>
     </div>
   );
